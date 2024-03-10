@@ -5,6 +5,8 @@ defmodule QueueTest do
   test "greets the world" do
     queue = Queue.new
 
+    assert [] == queue.items
+
     queue = Queue.enqueue(queue, 1)
     assert [1] == queue.items
 

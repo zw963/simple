@@ -1,6 +1,16 @@
 defmodule Queue do
   defstruct [:items]
 
+  @doc """
+  iex> IO.puts 100
+  :ok
+
+  iex> queue = Queue.new
+  ...> queue = Queue.enqueue(queue, 1)
+  ...> queue = Queue.enqueue(queue, 2)
+  ...> queue.items
+  [2, 1]
+  """
   def new do
     %Queue{items: []}
   end
