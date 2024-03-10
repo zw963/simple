@@ -22,10 +22,14 @@ defmodule QueueTest do
     assert 2 == item
     assert [3] == queue.items
 
+    refute Queue.is_empty?(queue)
+
     {:ok, item, queue} = Queue.dequeue(queue)
     assert 3 == item
     assert [] == queue.items
 
     assert Queue.is_empty?(queue)
+
+    assert {:error, "empty"} == Queue.dequeue(queue)
   end
 end

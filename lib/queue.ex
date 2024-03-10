@@ -5,20 +5,24 @@ defmodule Queue do
     %Queue{items: []}
   end
 
-  def enqueue(queue, item) do
-    %Queue{items: [item | queue.items]}
+  def enqueue(%Queue{items: items}, item) do
+    %Queue{items: [item | items]}
   end
 
-  def dequeue(queue) do
-    case queue do
-      [] -> {:error, "empty"}
-      _ ->
-        {head, tail} = Enum.split(queue.items, -1)
-        {:ok, List.first(tail), %Queue{items: head}}
-    end
+  def dequeue(%Queue{items: []}) do
+    {:error, "empty"}
   end
 
-  def is_empty?(queue) do
-    queue.items == []
+  def dequeue(%Queue{items: items}) do
+    {head, tail} = Enum.split(items, -1)
+    {:ok, List.first(tail), %Queue{items: head}}
+  end
+
+  def is_empty?(%Queue{items: []}) do
+    true
+  end
+
+  def is_empty?(_) do
+    false
   end
 end
